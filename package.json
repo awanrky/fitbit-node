@@ -1,0 +1,22 @@
+{
+	"name": "fitbit-node",
+	"description": "Node module for connecting with the fitbit public API",
+	"version": "0.0.1",
+	"main": "index.js",
+	"author": "Mark Ott <markgilbertott@gmail.com>",
+	"directories": { "lib": "./lib" },
+	"repository": { "type": "git", "url": "https://github.com/awanrky/fitbit-node" },
+	"dependencies": {
+		"oauth": "*",
+		"underscore": "*",
+		"underscore.string": "*",
+		"mocha": "*",
+		"chai": "*"
+	},
+	"scripts": {
+		"test":"mocha"
+	},
+	"licenses": [{
+		"type": "MIT", "URL": "https://github.com/awanrky/fitbit-node/LICENSE"
+	}]
+}
