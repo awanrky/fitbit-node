@@ -18,72 +18,131 @@ describe('external.fitbit', function () {
 	});
 
 	describe('body weight', function () {
+		var returnError, returnValue;
 
-		it('should get the current user\'s body weight', function(done) {
-			fitbit.getBodyWeight(function(error, data) {
-				expect(error).to.be.null;
-				expect(JSON.parse(data).weight).to.be.an('array');
+		before(function(done) {
+			fitbit.getBodyWeight()
+			.then(function(data) {
+				returnValue = data;
+				done();
+			}, function(error) {
+				returnError = error;
 				done();
 			});
+		});
+
+		it('should get the current user\'s body weight', function() {
+			expect(returnError).to.be.undefined;
+			expect(JSON.parse(returnValue).weight).to.be.an('array');
 		});
 	});
 
 	describe('body fat', function () {
-		it('should get the current user\'s body fat', function(done) {
-			fitbit.getBodyFat(function(error, data) {
-				expect(error).to.be.null;
-				expect(JSON.parse(data).fat).to.be.an('array');
+		var returnError, returnValue;
+
+		before(function(done) {
+			fitbit.getBodyFat()
+			.then(function(data) {
+				returnValue = data;
+				done();
+			}, function(error) {
+				returnError = error;
 				done();
 			});
+		});
+
+		it('should get the current user\'s body fat', function() {
+			expect(returnError).to.be.undefined;
+			expect(JSON.parse(returnValue).fat).to.be.an('array');
 		});
 	});
 
 	describe('user profile', function () {
-		it('should get the current user\'s profile', function(done) {
-			fitbit.getUserProfile(function(error, data) {
-				expect(error).to.be.null;
-				expect(JSON.parse(data).user).to.be.an('object');
+		var returnError, returnValue;
+
+		before(function(done) {
+			fitbit.getUserProfile()
+			.then(function(data) {
+				returnValue = data;
+				done();
+			}, function(error) {
+				returnError = error;
 				done();
 			});
+		});
+
+		it('should get the current user\'s profile', function() {
+			expect(returnError).to.be.undefined;
+			expect(JSON.parse(returnValue).user).to.be.an('object');
 		});
 	});
 
 	describe('heart rate', function () {
-		it('should get the current user\'s heart rate', function(done) {
-			fitbit.getHeartRate(function(error, data) {
-				expect(error).to.be.null;
-				var heartRateInformation = JSON.parse(data);
-				expect(heartRateInformation).to.be.an('object');
-				expect(heartRateInformation.average).to.be.an('array');
-				expect(heartRateInformation.heart).to.be.an('array');
+		var returnError, returnValue;
+
+		before(function(done) {
+			fitbit.getHeartRate()
+			.then(function(data) {
+				returnValue = data;
+				done();
+			}, function(error) {
+				returnError = error;
 				done();
 			});
+		});
+
+		it('should get the current user\'s heart rate', function() {
+			expect(returnError).to.be.undefined;
+			var heartRateInformation = JSON.parse(returnValue);
+			expect(heartRateInformation).to.be.an('object');
+			expect(heartRateInformation.average).to.be.an('array');
+			expect(heartRateInformation.heart).to.be.an('array');
 		});
 	});
 
 	describe('blood pressure', function () {
-		it('should get the current user\'s blood pressure', function(done) {
-			fitbit.getBloodPressure(function(error, data) {
-				expect(error).to.be.null;
-				var bloodPressureInformation = JSON.parse(data);
-				expect(bloodPressureInformation).to.be.an('object');
-//				expect(bloodPressureInformation.average).to.be.an('object');
-				expect(bloodPressureInformation.bp).to.be.an('array');
+		var returnError, returnValue;
+
+		before(function(done) {
+			fitbit.getBloodPressure()
+			.then(function(data) {
+				returnValue = data;
 				done();
+			}, function(error) {
+				returnError = error;
+				done()
 			});
+		});
+
+		it('should get the current user\'s blood pressure', function() {
+			expect(returnError).to.be.undefined;
+			var bloodPressureInformation = JSON.parse(returnValue);
+			expect(bloodPressureInformation).to.be.an('object');
+//				expect(bloodPressureInformation.average).to.be.an('object');
+			expect(bloodPressureInformation.bp).to.be.an('array');
 		});
 	});
 
 	describe('glucose', function () {
-		it('should get the current user\'s glucose', function(done) {
-			fitbit.getGlucose(function(error, data) {
-				expect(error).to.be.null;
-				var glucoseInformation = JSON.parse(data);
-				expect(glucoseInformation).to.be.an('object');
-				expect(glucoseInformation.glucose).to.be.an('array');
-//				expect(glucoseInformation.hba1c).to.be.a('string');
+	var returnError, returnValue;
+
+		before(function(done) {
+			fitbit.getGlucose()
+			.then(function(data) {
+				returnValue = data;
+				done();
+			}, function(error) {
+				returnError = error;
 				done();
 			});
+		});
+
+		it('should get the current user\'s glucose', function() {
+			expect(returnError).to.be.undefined;
+			var glucoseInformation = JSON.parse(returnValue);
+			expect(glucoseInformation).to.be.an('object');
+			expect(glucoseInformation.glucose).to.be.an('array');
+//				expect(glucoseInformation.hba1c).to.be.a('string');
 		});
 	});
 

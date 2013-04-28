@@ -8,8 +8,9 @@
 	"repository": { "type": "git", "url": "https://github.com/awanrky/fitbit-node" },
 	"dependencies": {
 		"oauth": "*",
-		"underscore": "*",
+		"lodash": "*",
 		"underscore.string": "*",
+		"node-promise": "*",
 		"mocha": "*",
 		"chai": "*"
 	},
