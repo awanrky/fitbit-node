@@ -8,9 +8,9 @@ describe('external.fitbit', function () {
 
 		settings = require('../fitbit-private').settings;
 
-		settings.currentUser = settings.awanrky;
+//		settings.currentUser = settings.awanrky;
 
-	var fitbit = new Fitbit(settings);
+	var fitbit = new Fitbit(settings, settings.awanrky);
 	var urls = new Urls(settings);
 
 	it('should have a fitbit object to work with', function () {
