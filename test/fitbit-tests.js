@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 describe('external.fitbit', function () {
 
 	var expect = require('chai').expect,
@@ -12,6 +14,11 @@ describe('external.fitbit', function () {
 
 	var fitbit = new Fitbit(settings, settings.awanrky);
 	var urls = new Urls(settings);
+
+    function parseError(error) {
+        if (_.isUndefined(error)) { return ''; }
+        return 'Status Code: ' + error.statusCode + ' Errors: ' + error.data;
+    }
 
 	it('should have a fitbit object to work with', function () {
 		expect(fitbit).to.be.an('object');
@@ -32,7 +39,7 @@ describe('external.fitbit', function () {
 		});
 
 		it('should get the current user\'s body weight', function() {
-			expect(returnError).to.be.undefined;
+			expect(returnError, parseError(returnError)).to.be.undefined;
 			expect(JSON.parse(returnValue).weight).to.be.an('array');
 		});
 	});
@@ -52,7 +59,7 @@ describe('external.fitbit', function () {
 		});
 
 		it('should get the current user\'s body fat', function() {
-			expect(returnError).to.be.undefined;
+			expect(returnError, parseError(returnError)).to.be.undefined;
 			expect(JSON.parse(returnValue).fat).to.be.an('array');
 		});
 	});
@@ -72,7 +79,7 @@ describe('external.fitbit', function () {
 		});
 
 		it('should get the current user\'s profile', function() {
-			expect(returnError).to.be.undefined;
+			expect(returnError, parseError(returnError)).to.be.undefined;
 			expect(JSON.parse(returnValue).user).to.be.an('object');
 		});
 	});
@@ -92,7 +99,7 @@ describe('external.fitbit', function () {
 		});
 
 		it('should get the current user\'s heart rate', function() {
-			expect(returnError).to.be.undefined;
+			expect(returnError, parseError(returnError)).to.be.undefined;
 			var heartRateInformation = JSON.parse(returnValue);
 			expect(heartRateInformation).to.be.an('object');
 			expect(heartRateInformation.average).to.be.an('array');
@@ -115,7 +122,7 @@ describe('external.fitbit', function () {
 		});
 
 		it('should get the current user\'s blood pressure', function() {
-			expect(returnError).to.be.undefined;
+			expect(returnError, parseError(returnError)).to.be.undefined;
 			var bloodPressureInformation = JSON.parse(returnValue);
 			expect(bloodPressureInformation).to.be.an('object');
 //				expect(bloodPressureInformation.average).to.be.an('object');
@@ -138,7 +145,7 @@ describe('external.fitbit', function () {
 		});
 
 		it('should get the current user\'s glucose', function() {
-			expect(returnError).to.be.undefined;
+			expect(returnError, parseError(returnError)).to.be.undefined;
 			var glucoseInformation = JSON.parse(returnValue);
 			expect(glucoseInformation).to.be.an('object');
 			expect(glucoseInformation.glucose).to.be.an('array');
